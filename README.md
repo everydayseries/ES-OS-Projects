@@ -25,4 +25,4 @@ The community suggested and voted on various ideas (ideas are still pouring in!)
 
 
 ----
-[Everyday Series] (https://everydayseries.com)
+[Everyday Series](https://everydayseries.com)
