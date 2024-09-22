@@ -3,6 +3,8 @@ Introduction to project
 
 The community suggested and voted on various ideas (ideas are still pouring in!) and some of these suggestions are:
 
+📚 An Alphabet Teacher for Kids 🌟
+
 🗒 A tool to summarize daily messages on WhatsApp groups.
 
 📚 A tool which can act as an engaging Hindi novel writer 
@@ -22,6 +24,8 @@ The community suggested and voted on various ideas (ideas are still pouring in!)
 🦈Shark tank simulator
 
 🖊️Author-bot/👩‍🔬Scientist-bot /🔥 AI as an economist / 🎹AI as a music teacher🧑‍🎤
+
+
 
 
 ----
