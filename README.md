@@ -3,7 +3,7 @@ Introduction to project
 
 The community suggested and voted on various ideas (ideas are still pouring in!) and some of these suggestions are:
 
-📚 An Alphabet Teacher for Kids 🌟
+📚 An Alphabet Teacher for Kids 🌟 [AlphaBets](https://everydayseries.github.io/ES-OS-Projects/AlphaBets/)
 
 🗒 A tool to summarize daily messages on WhatsApp groups.
 
