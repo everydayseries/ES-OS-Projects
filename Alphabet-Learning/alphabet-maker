@@ -1,0 +1,226 @@
+#!/bin/bash
+
+# Create project directory
+mkdir alphabet-pwa
+cd alphabet-pwa
+
+# Create index.html with updated viewport meta tag
+cat > index.html <<EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Disable zooming -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Alphabet Learning App</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div id="display-letter"></div>
+  <div id="buttons"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
+EOF
+
+# Create style.css with bright colors and fun font
+cat > style.css <<EOF
+/* Import the fun font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+body {
+  font-family: 'Comic Neue', cursive;
+  text-align: center;
+  background-color: #ffefd5; /* Papaya Whip */
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+#display-letter {
+  font-size: 10em;
+  margin-top: 50px;
+  color: #ff4500; /* Orange Red */
+}
+
+#buttons {
+  margin-top: 50px;
+}
+
+.button {
+  font-size: 5em;
+  padding: 20px;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  background-color: #32cd32; /* Lime Green */
+  border-radius: 20px;
+  line-height: 150px;
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.animate {
+  animation: celebration 1s ease-in-out;
+}
+
+@keyframes celebration {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2) rotate(10deg); }
+  50% { transform: scale(1.2) rotate(-10deg); }
+  75% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+EOF
+
+# Create app.js (same as before)
+cat > app.js <<'EOF'
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+let currentLetter = '';
+
+function getRandomLetters() {
+  const randomLetters = [];
+  const lettersCopy = letters.slice();
+  lettersCopy.splice(lettersCopy.indexOf(currentLetter), 1);
+  for(let i = 0; i < 4; i++) {
+    const index = Math.floor(Math.random() * lettersCopy.length);
+    randomLetters.push(lettersCopy.splice(index, 1)[0]);
+  }
+  randomLetters.push(currentLetter);
+  return shuffleArray(randomLetters);
+}
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function playSound(letter) {
+  const audio = new Audio('sounds/' + letter + '.wav');
+  audio.play();
+}
+
+function playClaps() {
+  const audio = new Audio('sounds/clap.wav');
+  audio.play();
+}
+
+function showAnimation() {
+  const display = document.getElementById('display-letter');
+  display.classList.add('animate');
+  setTimeout(() => {
+    display.classList.remove('animate');
+  }, 1000);
+}
+
+function startGame() {
+  currentLetter = letters[Math.floor(Math.random() * letters.length)];
+  document.getElementById('display-letter').textContent = currentLetter;
+  const buttonsContainer = document.getElementById('buttons');
+  buttonsContainer.innerHTML = '';
+  const randomLetters = getRandomLetters();
+  randomLetters.forEach(letter => {
+    const button = document.createElement('div');
+    button.className = 'button';
+    button.textContent = letter;
+    button.onclick = () => {
+      playSound(letter);
+      if(letter === currentLetter) {
+        setTimeout(() => {
+          playClaps();
+          showAnimation();
+        }, 500);
+        setTimeout(() => {
+          startGame();
+        }, 2000);
+      }
+    };
+    buttonsContainer.appendChild(button);
+  });
+}
+
+window.onload = () => {
+  startGame();
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+};
+EOF
+
+# Create manifest.json with display set to fullscreen and optional orientation
+cat > manifest.json <<EOF
+{
+  "name": "Alphabet Learning App",
+  "short_name": "AlphabetApp",
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#ffefd5",
+  "description": "An app for kids to learn alphabets.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+EOF
+
+# Create service-worker.js (same as before)
+cat > service-worker.js <<EOF
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open('alphabet-app').then(cache => {
+      return cache.addAll([
+        './',
+        './index.html',
+        './style.css',
+        './app.js',
+        './manifest.json',
+        './icon-192.png',
+        './icon-512.png',
+        // Add sounds and other assets here
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
+    })
+  );
+});
+EOF
+
+# Create directories and placeholder files for icons and sounds
+mkdir sounds
+touch sounds/clap.mp3
+for letter in {A..Z}; do
+  touch sounds/$letter.mp3
+done
+
+# Create placeholder icons
+touch icon-192.png
+touch icon-512.png
+
+echo "Project setup complete with updated requirements."
+echo "Please add the required sound files in the sounds/ directory and provide actual icons."
+
