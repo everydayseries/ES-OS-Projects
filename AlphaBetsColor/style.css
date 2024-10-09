@@ -1,0 +1,53 @@
+/* Import the fun font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+body {
+  font-family: 'Comic Neue', cursive;
+  text-align: center;
+  background-color: #ffefd5; /* Papaya Whip */
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+#display-letter {
+  font-size: 10em;
+  margin-top: 50px;
+  color: #ff4500; /* Orange Red */
+}
+
+#buttons {
+  margin-top: 50px;
+}
+
+.button {
+  font-size: 5em;
+  padding: 20px;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  background-color: #32cd32; /* Lime Green */
+  border-radius: 20px;
+  line-height: 150px;
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.animate {
+  animation: celebration 1s ease-in-out;
+}
+
+@keyframes celebration {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2) rotate(10deg); }
+  50% { transform: scale(1.2) rotate(-10deg); }
+  75% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1); }
+}

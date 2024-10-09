@@ -1,0 +1,192 @@
+/* Import the fun font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+body {
+  font-family: 'Comic Neue', cursive;
+  text-align: center;
+  background-color: #ffefd5; /* Papaya Whip */
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+#display-item {
+  font-size: 10em;
+  margin-top: 50px;
+  color: #ff4500; /* Orange Red */
+}
+
+#display-item img {
+  width: 200px;
+  height: 200px;
+}
+
+#buttons {
+  margin-top: 50px;
+}
+
+.button {
+  font-size: 5em;
+  padding: 20px;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  background-color: #32cd32; /* Lime Green */
+  border-radius: 20px;
+  line-height: 150px;
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s;
+}
+
+.button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.animate {
+  animation: celebration 1s ease-in-out;
+}
+
+@keyframes celebration {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2) rotate(10deg); }
+  50% { transform: scale(1.2) rotate(-10deg); }
+  75% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+/* Styles for edit mode */
+#side-box {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#side-box label {
+  display: block;
+}
+
+#edit-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.edit-item {
+  position: relative;
+  margin: 10px;
+  width: 150px;
+  height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.edit-item input {
+  width: 100%;
+  text-align: center;
+}
+
+.edit-item .delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.add-item {
+  border-style: dotted;
+  cursor: pointer;
+}
+
+.add-item span {
+  font-size: 5em;
+}
+
+/* Existing styles remain unchanged */
+
+/* Modal styles */
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+}
+
+#modal-content h2 {
+  margin-top: 0;
+}
+
+#modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-content label {
+  margin-bottom: 5px;
+}
+
+#modal-content input[type="text"],
+#modal-content input[type="file"] {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+#modal-content button {
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 1em;
+}
+
+#modal-content button[type="submit"] {
+  background-color: #32cd32; /* Lime Green */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#modal-content button#cancel-button {
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+#modal-content button:hover {
+  opacity: 0.9;
+}

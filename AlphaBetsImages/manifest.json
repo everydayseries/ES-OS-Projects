@@ -1,0 +1,21 @@
+{
+  "name": "Alphabet Learning App",
+  "short_name": "AlphabetApp",
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#ffefd5",
+  "description": "An app for kids to learn alphabets.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
