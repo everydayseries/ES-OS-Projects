@@ -5,7 +5,7 @@ The community suggested and voted on various ideas (ideas are still pouring in!)
 
 📚 An Alphabet Teacher for Kids 🌟 [AlphaBets](https://everydayseries.github.io/ES-OS-Projects/docs/index.html)
 
-🖥️ Shell script modifies your terminal behavior based on the type of project directory you're in (Python 🐍 or Node.js 🟢)
+🖥️ Shell script modifies your terminal behavior based on the type of project directory you're in (Python 🐍 or Node.js 🟢) [Tidy](https://github.com/everydayseries/ES-OS-Projects/tree/master/Tidy)
 
 🗒 A tool to summarize daily messages on WhatsApp groups.
 
