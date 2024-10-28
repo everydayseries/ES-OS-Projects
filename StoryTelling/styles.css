@@ -1,0 +1,211 @@
+/* General styles */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Childlike font */
+    background-color: #fff8e1; /* Soft light yellow background */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffcc80; /* Soft orange for childlike feel */
+    color: #ff5722; /* Bright orange for title */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    font-size: 28px;
+}
+
+.settings-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: #fff;
+    border: none;
+    color: #ff5722;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.settings-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: #333; /* Dark grey for sidebar */
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    color: white;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    padding-left: 20px;
+}
+
+.sidebar form {
+    padding: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.save-button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-button:hover {
+    background-color: #e64a19;
+}
+
+.api-info {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.api-info a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.submit-password {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-password:hover {
+    background-color: #e64a19;
+}
+
+/* Main form */
+#ideaForm {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    background-color: #ffeb3b;
+    border: 2px solid #ff5722;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    width: 90%;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid #ff5722;
+    font-size: 16px;
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #e64a19;
+}
+
+/* Loader and Story Section */
+#loader {
+    text-align: center;
+    font-size: 18px;
+    color: #ff5722;
+    margin-top: 20px;
+}
+
+#storySection {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    background-color: #ffe0b2;
+    border: 2px solid #ff5722;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#storySection h2 {
+    color: #ff5722;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+#generatedStory, #generatedPoem {
+    font-size: 18px;
+    color: #333;
+    margin-top: 15px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+img#storyImage {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 2px solid #ff5722;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}

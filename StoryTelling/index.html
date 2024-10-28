@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Story Generator</title>
+</head>
+<body>
+    <header>
+        <h1>✨ Let's Create a Magical Story! ✨</h1>
+        <button id="settingsButton" class="settings-button">⚙️ Settings</button>  <!-- Settings Button -->
+    </header>
+    <main>
+        <!-- Sidebar for settings (hidden by default) -->
+        <div id="sidebar" class="sidebar">
+            <h2>🔑 API Settings</h2>
+            <form id="settingsForm">
+                <label for="openaiApiKey">OpenAI API Key:</label>
+                <input type="text" id="openaiApiKey" class="input-field" placeholder="Enter your OpenAI API key">
+                <p class="api-info">Get your OpenAI API key from <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI API Key Page</a></p>
+
+                <label for="unsplashApiKey">Unsplash API Key:</label>
+                <input type="text" id="unsplashApiKey" class="input-field" placeholder="Enter your Unsplash API key">
+                <p class="api-info">Get your Unsplash API key from <a href="https://unsplash.com/developers" target="_blank">Unsplash Developers Page</a></p>
+
+                <button type="button" id="saveSettings" class="save-button">💾 Save API Keys</button>
+            </form>
+        </div>
+
+        <!-- Password prompt modal (hidden by default) -->
+        <div id="passwordModal" class="modal">
+            <div class="modal-content">
+                <label for="passwordInput">Enter Password:</label>
+                <input type="password" id="passwordInput" placeholder="Enter password">
+                <button id="submitPassword" class="submit-password">Submit</button>
+            </div>
+        </div>
+
+        <form id="ideaForm">
+            <label for="ideaInput">💭 What's your idea? 🎨</label>
+            <textarea id="ideaInput" placeholder="Once upon a time..." required></textarea>
+            <button type="submit">📝 Create My Story! 🎉</button>
+        </form>
+
+        <!-- Loader (hidden by default) -->
+        <div id="loader" style="display:none;">
+            <p>⏳ Generating your story, please wait... ⏳</p>
+        </div>
+
+        <!-- Story Output Section -->
+        <section id="storySection" style="display: none;">
+            <h2>📖 Your Story 🌟</h2>
+            <p id="generatedStory"></p>
+            <p id="generatedPoem"></p>   <!-- Ensure this element exists -->
+            <img id="storyImage" src="https://via.placeholder.com/400x300?text=No+Image+Found" alt="Story Image">
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
