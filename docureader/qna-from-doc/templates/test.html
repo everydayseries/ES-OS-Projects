@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document Q&A</title>
+        <link
+            rel="icon"
+            href="https://img.icons8.com/ios-filled/50/000000/document.png"
+            type="image/png"
+        />
+        <style>
+            /* Styling from your original HTML */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                max-width: 800px;
+                width: 100%;
+                margin-top: 50px;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+            .flash-message {
+                color: #e74c3c;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            h1 {
+                color: #0073e6;
+            }
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            input[type="file"],
+            input[type="text"] {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                width: 100%;
+            }
+            .btn {
+                background-color: #0073e6;
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .btn:hover {
+                background-color: #005bb5;
+            }
+            .answer-box {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-family: "Courier New", Courier, monospace;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            .footer {
+                margin-top: 40px;
+                padding: 10px;
+                text-align: center;
+                font-size: 14px;
+                color: #888;
+            }
+            .footer a {
+                color: #0073e6;
+                text-decoration: none;
+            }
+            .footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script
+            src="https://unpkg.com/react@17/umd/react.development.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            function App() {
+                const [flashMessage, setFlashMessage] = React.useState("");
+                const [question, setQuestion] = React.useState("");
+                const [answer, setAnswer] = React.useState("");
+
+                // Handle file upload
+                const handleFileUpload = async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData();
+                    const file = event.target.elements.file.files[0];
+                    formData.append("file", file);
+
+                    try {
+                        const response = await fetch(
+                            "http://127.0.0.1:5000/upload",
+                            {
+                                method: "POST",
+                                body: formData,
+                            },
+                        );
+                        const result = await response.json();
+                        if (result.message) setFlashMessage(result.message);
+                    } catch (error) {
+                        setFlashMessage("Error uploading file");
+                    }
+                };
+
+                // Handle question submit
+                const handleQuestionSubmit = async (event) => {
+                    event.preventDefault();
+                    const question = event.target.elements.question.value;
+                    setQuestion(question);
+
+                    try {
+                        const response = await fetch(
+                            "http://127.0.0.1:5000/ask",
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ question }),
+                            },
+                        );
+                        const result = await response.json();
+                        setAnswer(result.answer || "No answer available");
+                    } catch (error) {
+                        setAnswer("Error fetching answer");
+                    }
+                };
+
+                return (
+                    <div className="container">
+                        <h1>Document Q&A</h1>
+
+                        {/* Flash message */}
+                        {flashMessage && (
+                            <div className="flash-message">
+                                <p>{flashMessage}</p>
+                            </div>
+                        )}
+
+                        {/* Upload PDF Form */}
+                        <form
+                            onSubmit={handleFileUpload}
+                            className="form-group"
+                        >
+                            <label htmlFor="file">Upload a PDF Document:</label>
+                            <input type="file" name="file" accept=".pdf" />
+                            <button type="submit" className="btn">
+                                Upload
+                            </button>
+                        </form>
+
+                        {/* Ask Question Form */}
+                        <form
+                            onSubmit={handleQuestionSubmit}
+                            className="form-group"
+                        >
+                            <label htmlFor="question">
+                                Ask a Question Based on the Document:
+                            </label>
+                            <input
+                                type="text"
+                                name="question"
+                                placeholder="Enter your question here"
+                            />
+                            <button type="submit" className="btn">
+                                Ask
+                            </button>
+                        </form>
+
+                        {/* Question and Answer Display */}
+                        {question && (
+                            <div>
+                                <h2>Question:</h2>
+                                <p>{question}</p>
+                            </div>
+                        )}
+                        {answer && (
+                            <div>
+                                <h2>Answer:</h2>
+                                <div className="answer-box">{answer}</div>
+                            </div>
+                        )}
+                    </div>
+                );
+            }
+
+            ReactDOM.render(<App />, document.getElementById("root"));
+        </script>
+
+        <!-- Footer -->
+        <div class="footer">
+            Open source, made with ❤️ by Everyday Series. <br />
+            <a
+                href="https://github.com/everydayseries/ES-OS-Projects"
+                target="_blank"
+                >https://github.com/everydayseries/ES-OS-Projects</a
+            >
+        </div>
+    </body>
+</html>

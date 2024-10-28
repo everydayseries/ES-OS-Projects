@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document Q&A</title>
+        <link
+            rel="icon"
+            href="https://img.icons8.com/ios-filled/50/000000/document.png"
+            type="image/png"
+        />
+        <style>
+            /* Styling for the entire page */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Container styling */
+            .container {
+                max-width: 800px;
+                width: 100%;
+                margin-top: 50px;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            /* Flash message styling */
+            .flash-message {
+                color: #e74c3c;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+
+            /* Heading styling */
+            h1 {
+                color: #0073e6;
+            }
+
+            /* Form styling */
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            /* Input styling */
+            input[type="file"],
+            input[type="text"] {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                width: 100%;
+            }
+
+            /* Button styling */
+            .btn {
+                background-color: #0073e6;
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .btn:hover {
+                background-color: #005bb5;
+            }
+
+            /* Answer styling */
+            .answer-box {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-family: "Courier New", Courier, monospace;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            /* Footer styling */
+            .footer {
+                margin-top: 40px;
+                padding: 10px;
+                text-align: center;
+                font-size: 14px;
+                color: #888;
+            }
+
+            .footer a {
+                color: #0073e6;
+                text-decoration: none;
+            }
+
+            .footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Document Q&A</h1>
+
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %} {% endwith %}
+
+            <!-- Upload PDF Form -->
+            <form
+                action="/upload"
+                method="post"
+                enctype="multipart/form-data"
+                class="form-group"
+            >
+                <label for="file">Upload a PDF Document:</label>
+                <input type="file" name="file" accept=".pdf" />
+                <input type="submit" class="btn" value="Upload" />
+            </form>
+
+            <!-- Ask Question Form -->
+            <form action="/ask" method="post" class="form-group">
+                <label for="question"
+                    >Ask a Question Based on the Document:</label
+                >
+                <input
+                    type="text"
+                    name="question"
+                    placeholder="Enter your question here"
+                />
+                <input type="submit" class="btn" value="Ask" />
+            </form>
+
+            {% if question %}
+            <h2>Question:</h2>
+            <p>{{ question }}</p>
+            {% endif %} {% if answer %}
+            <h2>Answer:</h2>
+            <div class="answer-box">{{ answer }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Open source, made with ❤️ by Everyday Series. <br />
+            <a
+                href="https://github.com/everydayseries/ES-OS-Projects"
+                target="_blank"
+                >https://github.com/everydayseries/ES-OS-Projects</a
+            >
+        </div>
+    </body>
+</html>

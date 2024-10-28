@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Upload and View PDF</title>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table,
+            th,
+            td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Upload a PDF Document</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".pdf" />
+            <input type="submit" value="Upload" />
+        </form>
+
+        {% if table_data %}
+        <h2>PDF Content in Table Format:</h2>
+        <table>
+            <tr>
+                <th>Hospital Name</th>
+                <th>Specialization</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone Number</th>
+                <th>Contact Email</th>
+            </tr>
+            {% for row in table_data %}
+            <tr>
+                {% for column in row %}
+                <td>{{ column }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </body>
+</html>
