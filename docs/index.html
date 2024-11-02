@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Learning for Kids</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to right, #f78fb3, #fbc531);
+            min-height: 100vh;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            align-items: center;
+        }
+
+        .menu-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon .menu-bars {
+            width: 6px;
+            height: 1px;
+            background: white;
+            margin: 3px 0;
+        }
+
+        nav a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            position: relative;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ccc;
+        }
+
+        .panel img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .panel-content {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            color: white;
+            z-index: 10;
+        }
+
+        .panel-content p {
+            margin: 0;
+        }
+
+        .panel-content h2 {
+            margin: 8px 0;
+            font-size: 2rem;
+        }
+
+        .down .overlay {
+            transform: translateY(-100%);
+        }
+
+        .down:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .up .overlay {
+            transform: translateY(100%);
+        }
+
+        .up:hover .overlay {
+            transform: translateY(0);
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffe4e1;
+            color: #ff6f61;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px #ffcccb;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .popup h3 {
+            color: #ff6f61;
+            font-size: 1.5rem;
+        }
+
+        .popup p {
+            color: #555;
+        }
+
+        .popup .close-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="menu-icon">
+            <div class="menu-bars"></div>
+            <div class="menu-bars"></div>
+            <div class="menu-bars"></div>
+        </div>
+        <nav>
+            <a id="about-link">ABOUT</a>
+            <a id="credit-link">CREDIT</a>
+            <a href="#everydayseries">EVERYDAYSERIES</a>
+            <a href="#otherprojects">OTHER PROJECTS</a>
+        </nav>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Panel 1: ABC Adventure -->
+        <a href="../AlphaBets/" class="panel down">
+            <img src="https://everydayseries.github.io/ES-OS-Projects/docs/images/element5-digital-OyCl7Y4y0Bk-unsplash.jpg" alt="ABC Adventure" class="panel-image">
+            <div class="overlay"></div>
+            <div class="panel-content">
+                <p>Learn and Play</p>
+                <h2>ABC Adventure</h2>
+            </div>
+        </a>
+
+        <!-- Panel 2: Colorful ABCs -->
+        <a href="../AlphaBetsColor/" class="panel up">
+            <img src="https://everydayseries.github.io/ES-OS-Projects/docs/images/markus-spiske-8c-uaF7RiWk-unsplash.jpg" alt="Colorful ABCs" class="panel-image">
+            <div class="overlay"></div>
+            <div class="panel-content">
+                <p>Discover Colors</p>
+                <h2>Colorful ABCs</h2>
+            </div>
+        </a>
+
+        <!-- Panel 3: Picture Playtime -->
+        <a href="../AlphaBetsImages/" class="panel down">
+            <img src="https://everydayseries.github.io/ES-OS-Projects/docs/images/igor-starkov-s4GL0XwPSIU-unsplash.jpg" alt="Picture Playtime" class="panel-image">
+            <div class="overlay"></div>
+            <div class="panel-content">
+                <p>Images and Sounds</p>
+                <h2>Picture Playtime</h2>
+            </div>
+        </a>
+    </div>
+
+    <!-- Popup for "About" -->
+    <div class="popup-background" id="about-popup-background"></div>
+    <div class="popup" id="about-popup">
+        <h3>About</h3>
+        <p>This is a fun learning platform for kids to explore alphabets, colors, and images in a playful way.</p>
+        <span class="close-btn" id="close-about">Close</span>
+    </div>
+
+    <!-- Popup for "Credit" -->
+    <div class="popup-background" id="credit-popup-background"></div>
+    <div class="popup" id="credit-popup">
+        <h3>Credit</h3>
+        <p>Credits to photographers from Unsplash for the beautiful images used on this website. @element5digital, @markusspiske, @igorstarkoff, @ilumire</p>
+        <span class="close-btn" id="close-credit">Close</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Created with ❤️
+    </footer>
+
+    <script>
+        // Function to show a popup
+        function showPopup(popupId, backgroundId) {
+            document.getElementById(popupId).style.display = 'block';
+            document.getElementById(backgroundId).style.display = 'block';
+        }
+
+        // Function to hide a popup
+        function hidePopup(popupId, backgroundId) {
+            document.getElementById(popupId).style.display = 'none';
+            document.getElementById(backgroundId).style.display = 'none';
+        }
+
+        // Show About popup
+        document.getElementById('about-link').addEventListener('click', function() {
+            showPopup('about-popup', 'about-popup-background');
+        });
+
+        // Close About popup
+        document.getElementById('close-about').addEventListener('click', function() {
+            hidePopup('about-popup', 'about-popup-background');
+        });
+
+        // Show Credit popup
+        document.getElementById('credit-link').addEventListener('click', function() {
+            showPopup('credit-popup', 'credit-popup-background');
+        });
+
+        // Close Credit popup
+        document.getElementById('close-credit').addEventListener('click', function() {
+            hidePopup('credit-popup', 'credit-popup-background');
+        });
+    </script>
+</body>
+</html>
