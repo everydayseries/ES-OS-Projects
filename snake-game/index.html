@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Snake Game</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                background-color: #f0f8ff;
+            }
+
+            #container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1000px;
+            }
+
+            #leaderboard,
+            #controls,
+            #gameContainer {
+                padding: 20px;
+            }
+
+            #gameContainer {
+                text-align: center;
+            }
+
+            canvas {
+                background-color: #e0e0e0;
+                border: 3px solid #555;
+                display: block;
+                margin: 10px auto;
+            }
+
+            #controls {
+                display: grid;
+                grid-template-areas:
+                    "up up up"
+                    "left center right"
+                    "down down down";
+                gap: 10px;
+            }
+
+            #controls button {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #up {
+                grid-area: up;
+                background-color: #f94144;
+            }
+            #left {
+                grid-area: left;
+                background-color: #f8961e;
+            }
+            #right {
+                grid-area: right;
+                background-color: #f9844a;
+            }
+            #down {
+                grid-area: down;
+                background-color: #43aa8b;
+            }
+            #center {
+                grid-area: center;
+                background-color: transparent;
+            }
+
+            #restartButton,
+            #startButton,
+            #speedButton,
+            #resetLeaderboardButton {
+                padding: 10px 20px;
+                font-size: 18px;
+                background-color: #3a86ff;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            #leaderboard table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #leaderboard th,
+            #leaderboard td {
+                padding: 8px;
+                border: 1px solid #555;
+                text-align: center;
+            }
+
+            #customization {
+                margin-top: 15px;
+            }
+
+            .confetti {
+                position: fixed;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+                font-size: 40px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <!-- Leaderboard Section -->
+            <div id="leaderboard">
+                <h2>Leaderboard</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- Leaderboard entries will go here -->
+                    </tbody>
+                </table>
+                <button
+                    id="resetLeaderboardButton"
+                    onclick="resetLeaderboard()"
+                >
+                    Reset Leaderboard
+                </button>
+            </div>
+
+            <!-- Game and Controls Section -->
+            <div id="gameContainer">
+                <div id="playerForm">
+                    <label for="playerName">Enter your name:</label>
+                    <input type="text" id="playerName" required />
+                    <button id="startButton" onclick="startGame()">
+                        Start Game
+                    </button>
+                </div>
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <button
+                    id="restartButton"
+                    onclick="restartGame()"
+                    style="display: none"
+                >
+                    Restart Game
+                </button>
+                <button id="speedButton" onclick="toggleSpeed()">
+                    Speed: Normal
+                </button>
+
+                <!-- Customization Options -->
+                <div id="customization">
+                    <h3>Customize Your Snake</h3>
+                    <label for="snakeColor">Snake Color:</label>
+                    <input type="color" id="snakeColor" value="#008000" />
+                    <br />
+                    <label for="foodColor">Food Color:</label>
+                    <input type="color" id="foodColor" value="#FF0000" />
+                    <br />
+                    <label for="snakeShape">Snake Shape:</label>
+                    <select id="snakeShape">
+                        <option value="square">Square</option>
+                        <option value="circle">Circle</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div id="controls">
+                <button id="up" onclick="changeDirection('up')">⬆️</button>
+                <button id="left" onclick="changeDirection('left')">⬅️</button>
+                <button id="center" disabled></button>
+                <button id="right" onclick="changeDirection('right')">
+                    ➡️
+                </button>
+                <button id="down" onclick="changeDirection('down')">⬇️</button>
+            </div>
+        </div>
+
+        <div id="confetti" class="confetti">🎉🎉🎉</div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
