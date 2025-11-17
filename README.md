@@ -39,8 +39,7 @@ The community suggested and voted on various ideas (ideas are still pouring in!)
 
 🖊️Author-bot/👩‍🔬Scientist-bot /🔥 AI as an economist / 🎹AI as a music teacher🧑‍🎤
 
-
-
+Maintained by **everydayseries**
 
 ----
 [Everyday Series](https://everydayseries.com)
