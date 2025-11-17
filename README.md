@@ -14,6 +14,7 @@ That scrappy energy has evolved. Today we draft with Codex, brainstorm flows wit
 - 🧠 **StoryTelling** – Prompt it with an idea, receive a crafted story. → [workspace](https://github.com/everydayseries/ES-OS-Projects/tree/master/StoryTelling)
 - 🎵 **Songify** – Song recommender from vibe keywords. → [workspace](https://github.com/everydayseries/ES-OS-Projects/tree/master/Songify)
 - 🐍 **Snake Game** – Retro fun, modern code. → [workspace](https://github.com/everydayseries/ES-OS-Projects/tree/master/snake-game)
+- 🧽 **Mac Clean** – Interactive cleanup script + menu bar monitor to reclaim disk space. → [workspace](https://github.com/everydayseries/ES-OS-Projects/tree/master/mac-clean)
 
 ## 🌈 Coming soon (vote on what’s next!)
 - 🗒 WhatsApp daily-summary bot
